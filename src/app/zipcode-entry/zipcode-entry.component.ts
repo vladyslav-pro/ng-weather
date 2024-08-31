@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import {LocationService} from "../location.service";
+import {LocationService} from '../location.service';
 
 @Component({
   selector: 'app-zipcode-entry',
-  templateUrl: './zipcode-entry.component.html'
+  templateUrl: './zipcode-entry.component.html',
+  standalone: true
 })
 export class ZipcodeEntryComponent {
 
