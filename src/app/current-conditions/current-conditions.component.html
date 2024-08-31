@@ -1,8 +1,13 @@
 <div>
+    <mat-tab-group>
     @for ( location of currentConditionsByZip(); track $index) {
-        <current-conditions-item
-                [location]="location"
-                class="well flex"
-        ></current-conditions-item>
+        <mat-tab [label]="location.data.name + ' (' + location.zip + ')'">
+            <current-conditions-item
+                    [location]="location"
+                    class="well flex"
+            ></current-conditions-item>
+        </mat-tab>
+
     }
+    </mat-tab-group>
 </div>

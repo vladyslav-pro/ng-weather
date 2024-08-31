@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {WeatherService} from '../weather.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {Forecast} from './forecast.type';
 import {DatePipe, DecimalPipe} from '@angular/common';
+import {ForecastItemComponent} from './forecast-item/forecast-item.component';
 
 @Component({
   selector: 'app-forecasts-list',
@@ -10,7 +11,9 @@ import {DatePipe, DecimalPipe} from '@angular/common';
   styleUrls: ['./forecasts-list.component.css'],
   imports: [
     DatePipe,
-    DecimalPipe
+    DecimalPipe,
+    ForecastItemComponent,
+    RouterLink
   ],
   standalone: true
 })
