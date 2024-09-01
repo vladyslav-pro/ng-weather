@@ -1,12 +1,12 @@
 import {Component, inject, Signal} from '@angular/core';
-import {WeatherService} from '../weather.service';
+import {WeatherService} from '../services/weather.service';
 import {ConditionsAndZip} from '../conditions-and-zip.type';
 import {DecimalPipe} from '@angular/common';
 import {CurrentConditionsItemComponent} from './current-conditions-item/current-conditions-item.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {LocationService} from '../location.service';
+import {LocationService} from '../services/location.service';
 
 @Component({
   selector: 'app-current-conditions',

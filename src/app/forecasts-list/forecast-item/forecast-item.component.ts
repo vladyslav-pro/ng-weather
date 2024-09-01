@@ -1,6 +1,6 @@
 import {Component, inject, Input} from '@angular/core';
 import {DatePipe, DecimalPipe} from '@angular/common';
-import {WeatherService} from '../../weather.service';
+import {WeatherService} from '../../services/weather.service';
 import { List} from '../forecast.type';
 
 @Component({

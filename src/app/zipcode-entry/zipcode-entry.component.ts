@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {LocationService} from '../location.service';
+import {LocationService} from '../services/location.service';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
