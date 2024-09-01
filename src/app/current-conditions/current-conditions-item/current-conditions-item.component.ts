@@ -1,8 +1,8 @@
 import {Component, inject, Input} from '@angular/core';
 import {DecimalPipe} from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
-import {LocationService} from '../../location.service';
 import {WeatherService} from '../../weather.service';
+import {ConditionsAndZip} from '../../conditions-and-zip.type';
 
 @Component({
   selector: 'current-conditions-item',
@@ -15,10 +15,10 @@ import {WeatherService} from '../../weather.service';
   styleUrl: './current-conditions-item.component.css'
 })
 export class CurrentConditionsItemComponent {
-  @Input({required: true}) location ;
+  @Input({required: true}) location: ConditionsAndZip ;
 
   private router = inject(Router);
-  protected locationService = inject(LocationService);
+
   protected weatherService = inject(WeatherService);
 
   showForecast(zipcode: string) {

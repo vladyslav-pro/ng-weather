@@ -1,8 +1,16 @@
 <div class="well">
   <h2>Enter a zipcode:</h2>
-  <input type="text" #zipcode placeholder="Zipcode" class="form-control">
-  <br>
-  <button class="btn btn-primary" (click)="addLocation(zipcode.value)" >
-    Add location
-  </button>
+    <form [formGroup]="zipcodeForm" (ngSubmit)="onSubmit()">
+        <input
+            type="text"
+            placeholder="Zipcode"
+            formControlName="zipcode"
+            class="form-control">
+        <br>
+        <button
+            class="btn btn-primary"
+            type="submit">
+            Add location
+        </button>
+    </form>
 </div>

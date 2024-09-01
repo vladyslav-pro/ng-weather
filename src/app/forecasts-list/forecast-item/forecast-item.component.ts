@@ -1,6 +1,7 @@
 import {Component, inject, Input} from '@angular/core';
 import {DatePipe, DecimalPipe} from '@angular/common';
 import {WeatherService} from '../../weather.service';
+import { List} from '../forecast.type';
 
 @Component({
   selector: 'forecast-item',
@@ -13,7 +14,7 @@ import {WeatherService} from '../../weather.service';
   styleUrl: './forecast-item.component.css'
 })
 export class ForecastItemComponent {
-    @Input({required: true}) dailyForecast;
+    @Input({required: true}) dailyForecast: List;
 
     protected weatherService = inject(WeatherService);
 
