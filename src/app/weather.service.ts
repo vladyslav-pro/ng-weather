@@ -1,20 +1,41 @@
-import { Injectable, Signal, signal} from '@angular/core';
+import {computed, inject, Injectable, Signal, signal} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {HttpClient} from '@angular/common/http';
 import {CurrentConditions} from './current-conditions/current-conditions.type';
 import {ConditionsAndZip} from './conditions-and-zip.type';
 import {Forecast} from './forecasts-list/forecast.type';
+import {LocationService} from './location.service';
 
 @Injectable()
 export class WeatherService {
+  private http = inject(HttpClient);
+  private locationService = inject(LocationService);
 
   static URL = 'https://api.openweathermap.org/data/2.5';
   static APPID = '5a4b2d457ecbef9eb2a71e480b947604';
   static ICON_URL = 'https://raw.githubusercontent.com/udacity/Sunshine-Version-2/sunshine_master/app/src/main/res/drawable-hdpi/';
   private currentConditions = signal<ConditionsAndZip[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor() {
+    this.locationService.locations$.subscribe(locations => {
+      this.updateWeatherConditions(locations);
+    });
+  }
+
+  private updateWeatherConditions(locations: string[]) {
+    const currentZips = this.currentConditions().map(condition => condition.zip);
+    const newZips = locations.filter(zip => !currentZips.includes(zip));
+    const removedZips = currentZips.filter(zip => !locations.includes(zip));
+
+    removedZips.forEach(zipcode => {
+      this.removeCurrentConditions(zipcode);
+    });
+
+    newZips.forEach(zipcode => {
+      this.addCurrentConditions(zipcode);
+    });
+  }
 
   addCurrentConditions(zipcode: string): void {
     // Here we make a request to get the current conditions data from the API. Note the use of backticks and an expression to insert the zipcode
@@ -23,13 +44,7 @@ export class WeatherService {
   }
 
   removeCurrentConditions(zipcode: string) {
-    this.currentConditions.update(conditions => {
-      for (let i in conditions) {
-        if (conditions[i].zip == zipcode)
-          conditions.splice(+i, 1);
-      }
-      return conditions;
-    })
+    this.currentConditions.update(conditions => conditions.filter(condition => condition.zip !== zipcode));
   }
 
   getCurrentConditions(): Signal<ConditionsAndZip[]> {

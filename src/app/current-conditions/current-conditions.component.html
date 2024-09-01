@@ -7,7 +7,7 @@
                 {{location.data.name + ' (' + location.zip + ')'}}
                 <button
                     mat-icon-button
-                    (click)="locationService.removeLocation(location.zip)">
+                    (click)="removeLocation(location.zip)">
                     <mat-icon>close</mat-icon>
                 </button>
             </ng-template>

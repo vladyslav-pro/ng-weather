@@ -26,4 +26,8 @@ export class CurrentConditionsComponent {
   protected locationService = inject(LocationService);
 
   protected currentConditionsByZip: Signal<ConditionsAndZip[]> = this.weatherService.getCurrentConditions();
+
+  removeLocation(zip: string): void {
+    this.locationService.removeLocation(zip);
+  }
 }
